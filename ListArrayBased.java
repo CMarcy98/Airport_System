@@ -1,16 +1,16 @@
 // ********************************************************
 // Array-based implementation of the ADT list.
 // *********************************************************
-public class ListArrayBased implements ListInterface
+public class ListArrayBased<T> implements ListInterface<T>
 {
 
     private static final int MAX_LIST = 3;
-    protected Object []items;  // an array of list items
+    protected T []items;  // an array of list items
     protected int numItems;  // number of items in list
 
     public ListArrayBased()
     {
-        items = new Object[MAX_LIST];
+        items = (T[]) new Object[MAX_LIST];
         numItems = 0;
     }  // end default constructor
 
@@ -28,11 +28,11 @@ public class ListArrayBased implements ListInterface
     {
         // Creates a new array; marks old array for
         // garbage collection.
-        items = new Object[MAX_LIST];
+        items = (T[]) new Object[MAX_LIST];
         numItems = 0;
     } // end removeAll
 
-    public void add(int index, Object item)
+    public void add(int index, T item)
     throws  ListIndexOutOfBoundsException
     {
         if (numItems == items.length)
@@ -58,7 +58,7 @@ public class ListArrayBased implements ListInterface
         }  // end if
     } //end add
 
-    public Object get(int index)
+    public T get(int index)
     throws ListIndexOutOfBoundsException
     {
         if (index >= 0 && index < numItems)

@@ -1,4 +1,4 @@
-public class ListArrayBasedPlus extends ListArrayBased {
+public class ListArrayBasedPlus<T> extends ListArrayBased<T> {
 
     public ListArrayBasedPlus()
     {
@@ -12,10 +12,10 @@ public class ListArrayBasedPlus extends ListArrayBased {
     {
         //New number for array size
         int newNum = items.length + (items.length/2) + 1;
-        Object []large = new Object[newNum];
+        T []large = (T[]) new Object[newNum];
 
         //Create array with more room
-        large = new Object[newNum];
+        //large = (T[]) new Object[newNum];
 
         //Populate larger array with original items
         for(int i = 0; i < numItems; i++) {
@@ -31,7 +31,7 @@ public class ListArrayBasedPlus extends ListArrayBased {
      * @param index The index to inserted at
      * @param item The item to be inserted
      */
-    public void add(int index, Object item)
+    public void add(int index, T item)
     {
         if(items.length == numItems) {
             resize();
@@ -46,7 +46,7 @@ public class ListArrayBasedPlus extends ListArrayBased {
     {
         //Swap first and last and move in
         for(int i = 0; i < size()/2; i++) {
-            Object temp = items[size()-1-i];
+            T temp = items[size()-1-i];
             items[size()-1-i] = items[i];
             items[i] = temp;
         }
