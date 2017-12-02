@@ -3,7 +3,7 @@ public class Flight
 {
 	private int flightNumber;
 	private String flightDestination;
-	private String runway;
+	private Runway runway;
 	
 	/*
 	 * Creates attributes of a flight
