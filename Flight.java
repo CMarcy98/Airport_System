@@ -8,7 +8,7 @@ public class Flight
 	/*
 	 * Creates attributes of a flight
 	 */
-	public Flight(int number, String destination, String runway)
+	public Flight(int number, String destination, Runway runway)
 	{
 		flightNumber = number;
 		flightDestination = destination;
