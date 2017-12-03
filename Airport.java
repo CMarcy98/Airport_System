@@ -10,7 +10,6 @@ public class Airport {
 	 */
 	public Airport(int runwayCount) {
 		runways = new Queue<Runway>();
-		
 		planeCount = 0;
 	}
 	
@@ -18,7 +17,7 @@ public class Airport {
 	
 	/*
 	 * Returns all run-ways in the airport
-	 * @return The runways in the airport
+	 * @return The run-ways in the airport
 	 */
 	public Queue<Runway> getRunways()
 	{
@@ -36,7 +35,57 @@ public class Airport {
 	
 //  <-------------------------------------------->  //
 
+	/*
+	 * 
+	 */
+	public void dispatchPlane()
+	{
+		//Gets information about the run-way 
+		Runway runway = runways.dequeue();
+		Flight plane = runway.getFlightQueue().dequeue();
+		
+		//Prints info about flight leaving
+		System.out.printf("Flight %s has now taken off from runway %s\n", plane.getFlightNumber(), plane.getRunway());
+		
+		//Moves run-way to back of queue
+		runways.enqueue(runway);
+		
+		planeCount++;
+	}
 	
+	
+	/*
+	 * Moves flight at the beginning of the queue from the run-way to the waiting list
+	 */
+	public void moveToWaiting()
+	{
+		//Gets information about the run-way 
+		Runway runway = runways.dequeue();
+		Flight plane = runway.getFlightQueue().peek();
+		
+		//Prints information about where plane is going
+		System.out.println("Flight " + plane.getFlightNumber() + " is now waiting to be allowed to re-enter a runway.");
+		
+		//Moves plane to waiting list on the specific run-way
+		runway.getWaitingList().add(runway.getWaitingList().size(), plane);
+		
+		//Moves run-way to back of queue
+		runways.enqueue(runway);
+	}
+	
+	
+	/*
+	 * If the name of the run-way is not in the
+	 */
+	public boolean isValidRunwayName(String name)
+	{
+		boolean isRunway = false;
+		Runway firstRunway = runways.peek();
+		
+		
+		
+		return isRunway;
+	}
 	
 	
 }
