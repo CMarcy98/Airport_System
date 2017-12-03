@@ -34,7 +34,7 @@ public class Queue<T> implements QueueInterface<T> {
 	}
 	
 	/*
-	 * Adds an item to the endf of the queue in a circular fashion
+	 * Adds an item to the end of the queue in a circular fashion
 	 * @param newItem The new item to be added to the queue
 	 */
 	public void enqueue(T newItem)
