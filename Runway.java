@@ -57,9 +57,14 @@ public class Runway
 		flightQueue.enqueue(flight);
 	}
 	
+	/*
+	 * Adds a flight to enter the waiting area where
+	 * it waits to re-enter the run-way
+	 * @param flight The flight to be added to the waiting list
+	 */
 	public void addToWaiting(Flight flight)
 	{
-		waitingList.add
+		waitingList.add(waitingList.size(), flight);
 	}
 	
 	
