@@ -57,7 +57,7 @@ public class Flight
 	/*
 	 * Returns the run way that the plane is on
 	 */
-	public String getRunway()
+	public Runway getRunway()
 	{
 		return runway;
 	}
@@ -65,7 +65,7 @@ public class Flight
 	/*
 	 * Sets the run way that the plane is on
 	 */
-	public void setRunway(String runway)
+	public void setRunway(Runway runway)
 	{
 		this.runway = runway;
 	}

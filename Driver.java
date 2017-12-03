@@ -8,22 +8,45 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException
 	{
-		int optionNumber = -1;
 		String strPlaneNumber = "";
 		String strDestination = "";
-		String strRunway = "";
-		
+		String strRunway = "";	
+		String input = "";
+
+		int optionNumber = -1;
 		int planeNumber;
 		int idNumber;
 		int planeCount = 0;
-		String input = "";
+		int runwayCount = 0;
+		
+		boolean isNumber = false;
 		
 		
+		//Initializing airport
+		System.out.println("Welcome to the Airport program");
+		
+		while(!isNumber) {
+			System.out.print("Enter the number of runways: ");
+			try {
+				runwayCount = Integer.parseInt(buff.readLine());
+				isNumber = true;
+			} catch (NumberFormatException e) {
+				System.out.println("Sorry, that is not a number");
+			}
+		}
+		
+		
+		
+		
+		
+		/*
+		 * ---Menu options---
+		 */
 		while(optionNumber != 9) {
 			System.out.println("\nSelect from the following menu:\n"
 					+ "\t1. Plane enters the system.\n"
 					+ "\t2. Plane takes off.\n"
-					+ "\t3. Plane is allowed to re-enter a runwayT.\n"
+					+ "\t3. Plane is allowed to re-enter a runway.\n"
 					+ "\t4. Runway opens.\n"
 					+ "\t5. Runway closes.\n"
 					+ "\t6. Display info about planes waiting to take off.\n"
@@ -69,65 +92,46 @@ public class Driver {
 					
 					break;
 					
-				// Deletes key from tree
+				// Plane takes off from airport
 				case 2:
-					System.out.println("Deleting a person from the tree....");
-
-					//Reads id of person to be deleted
-					System.out.print("Id of person: ");
-					id = buff.readLine();
-					idNumber = Integer.parseInt(id);
-					//System.out.println(idNumber);
+					
 					
 					break;
 					
-				// Searches for key in tree	
+				// Plane is allowed to re-enter a run-way	
 				case 3:
-					if(bst.getSize() == 0) {
-						System.out.println("The tree is empty.");
-					} else {
-						System.out.println("Searching for a person in the tree....");
-	
-						//Reads id of person to be deleted
-						System.out.print("Id of person: ");
-						id = buff.readLine();
-						idNumber = Integer.parseInt(id);
-						//System.out.println(idNumber);
-						
-						try {
-							System.out.println("Searching for person with id " + idNumber + " in the tree...");
-							Person foundPerson = bst.retrieve(idNumber);
-							System.out.println(foundPerson.getName() + " was found with the id " + idNumber + "!");
-						} catch(NullPointerException e) {
-							System.out.println("Sorry, there is no one with that id.");
-						}
-					}
+					
 					
 					break;
 					
-				// Displays height of tree	
+				// Run-way opens
 				case 4:
-					System.out.println("The height of the tree is currently " + bst.getHeight());
+					
+					
 					break;
 					
-				// Displays size of tree
+				// Run-way closes
 				case 5:
-					System.out.println("The size of the binary search tree is: " + bst.getSize() + "\n");
+					
+					
 					break;
 				
-				// Displays tree inorder
+				// Display info about planes waiting to take off
 				case 6:
-					System.out.println(bst.toStringInorder());				
+					
+									
 					break;
 					
-				// Displays tree in preorder	
+				// Display info about planes waiting to be allowed to re-enter a run-way	
 				case 7:
-					System.out.println(bst.toStringPreorder());				
+
+					
 					break;
 				
-				// Displays tree in postorder
+				// Display number of planes who have taken off
 				case 8:
-					System.out.println(bst.toStringPostorder());				
+
+					System.out.println();
 					break;
 					
 					
@@ -143,20 +147,4 @@ public class Driver {
 		
 	}// end main
 	
-	
-//	private static void printInOrder(TreeNode node)
-//	{
-//		if(node == null) {
-//			return;
-//		}
-//		
-//		//Print left child
-//		printInOrder(node.getLeftChild());
-//		
-//		//Print current key
-//		System.out.println(node.getItem().toString() + " ");
-//		
-//		//Print right child
-//		printInOrder(node.getRightChild());
-//	}
 }// end driver
