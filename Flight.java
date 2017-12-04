@@ -3,12 +3,12 @@ public class Flight
 {
 	private int flightNumber;
 	private String flightDestination;
-	private Runway runway;
+	private String runway;
 	
 	/*
 	 * Creates attributes of a flight
 	 */
-	public Flight(int number, String destination, Runway runway)
+	public Flight(int number, String destination, String runway)
 	{
 		flightNumber = number;
 		flightDestination = destination;
@@ -57,7 +57,7 @@ public class Flight
 	/*
 	 * Returns the run way that the plane is on
 	 */
-	public Runway getRunway()
+	public String getRunway()
 	{
 		return runway;
 	}
@@ -65,7 +65,7 @@ public class Flight
 	/*
 	 * Sets the run way that the plane is on
 	 */
-	public void setRunway(Runway runway)
+	public void setRunway(String runway)
 	{
 		this.runway = runway;
 	}
