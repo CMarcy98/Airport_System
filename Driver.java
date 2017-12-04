@@ -8,18 +8,22 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException
 	{
-		String strPlaneNumber = "";
-		String strDestination = "";
-		String strRunway = "";	
-		String input = "";
-
 		int optionNumber = -1;
 		int planeNumber;
 		int idNumber;
 		int planeCount = 0;
 		int runwayCount = 0;
+		int nameCount = 0;
 		
+		String strPlaneNumber = "";
+		String strDestination = "";
+		String strRunway = "";	
+		String runwayName = "";
+		String input = "";
+
 		boolean isNumber = false;
+		
+		Queue<Runway> runways = new Queue<Runway>();
 		
 		
 		//Initializing airport
@@ -33,9 +37,50 @@ public class Driver {
 			} catch (NumberFormatException e) {
 				System.out.println("Sorry, that is not a number");
 			}
+		} // end while
+		
+		
+		//Ensures names are unique for run-ways
+		String[] names = new String[runwayCount];
+		while(nameCount < runwayCount) {
+			System.out.print("Enter the name of runway number " + (nameCount+1) + ": ");
+			runwayName = buff.readLine();
+			boolean isUnique = true;
+			
+			System.out.println("The name count is " + nameCount);
+			
+			//Adds run-way name to a temporary collection
+			if(nameCount == 0) {
+				System.out.println("Added first element");
+				names[nameCount] = runwayName;
+			} else {
+				names[nameCount] = runwayName;
+			}
+			
+			//Checks if name is in array already
+			for(int i = 0; i < nameCount; i++) {
+				if(names[i].equals(runwayName)) {
+					isUnique = false;
+				}
+			}
+			
+			
+			if(isUnique) {
+				nameCount++;
+			} else {
+				System.out.println(runwayName + " is already a runway. Try again...");
+			}
+		} // end while
+		
+		
+		//Fill queue with unique names
+		for(int i = 0; i < runwayCount; i++) {
+			runways.enqueue(new Runway(names[i]));
 		}
 		
 		
+		
+		Airport airport = new Airport(runwayCount, runways);
 		
 		
 		
@@ -87,8 +132,10 @@ public class Driver {
 					System.out.print("Enter the name of the runway it will be entering:");
 					strRunway = buff.readLine();
 					
+					
+					
 					//Creates Plane and adds it to the system if it passes the tests
-					//TODO Make plane object
+					Flight plane = new Flight(planeNumber, strDestination, strRunway);
 					
 					break;
 					
