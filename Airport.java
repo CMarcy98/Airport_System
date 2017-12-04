@@ -8,8 +8,8 @@ public class Airport {
 	 * Creates attributes of an airport
 	 * @param runWayCount The number of run-ways for the airport
 	 */
-	public Airport(int runwayCount) {
-		runways = new Queue<Runway>();
+	public Airport(int runwayCount, Queue<Runway> runways) {
+		this.runways = runways;
 		planeCount = 0;
 	}
 	
@@ -71,21 +71,5 @@ public class Airport {
 		
 		//Moves run-way to back of queue
 		runways.enqueue(runway);
-	}
-	
-	
-	/*
-	 * If the name of the run-way is not in the
-	 */
-	public boolean isValidRunwayName(String name)
-	{
-		boolean isRunway = false;
-		Runway firstRunway = runways.peek();
-		
-		
-		
-		return isRunway;
-	}
-	
-	
+	}	
 }
