@@ -3,17 +3,17 @@ public class Runway
 {
 	private String name;
 	private Queue<Flight> flightQueue;
-	private MyListReferenceBased<Flight> waitingList;
+	private ListArrayBasedPlus<Flight> waitingList;
 	
 	/*
-	 * Creates a runway with a specific name
+	 * Creates a run-way with a specific name
 	 * @param name The name of the run-way
 	 */
 	public Runway(String name)
 	{
 		this.name = name;
 		flightQueue = new Queue<Flight>(); 
-		waitingList = new MyListReferenceBased<Flight>();
+		waitingList = new ListArrayBasedPlus<Flight>();
 	}
 	
 //  <-------------------------------------------->  //
@@ -30,19 +30,48 @@ public class Runway
 	/*
 	 * Returns the list of planes waiting to re-enter the run-way
 	 */
-	public MyListReferenceBased<Flight> getWaitingList()
+	public ListArrayBasedPlus<Flight> getWaitingList()
 	{
 		return waitingList;
 	}
 	
 	/*
-	 * Returns the name of the runway
+	 * Returns the name of the run-way
 	 */
 	public String getName()
 	{
 		return name;
 	}
 	
+	/*
+	 * Removes the flight from the cleared run-way and returns
+	 * that plane to be moved somewhere else
+	 * @return The flight that was at the beginning of the queue
+	 */
+	public Flight getFromRunway()
+	{
+		return flightQueue.dequeue();
+	}
+	
+	/*
+	 * Removes a plane from the waiting list to be 
+	 * moved somewhere else
+	 * @return The flight searched for or null if not found
+	 */
+	public Flight getFromWaiting(String flightNumber)
+	{
+		Flight returnFlight = null;
+		
+		for(int i = 0; i < waitingList.size(); i++) {
+			Flight flight = waitingList.get(i);
+			if(flight.getFlightNumber().equals(flightNumber)) {
+				returnFlight = flight;
+			}
+			waitingList.remove(i);
+		}
+		
+		return returnFlight;
+	}
 	
 //  <-------------------------------------------->  //
 	
@@ -57,6 +86,8 @@ public class Runway
 		flightQueue.enqueue(flight);
 	}
 	
+
+	
 	/*
 	 * Adds a flight to enter the waiting area where
 	 * it waits to re-enter the run-way
@@ -66,10 +97,6 @@ public class Runway
 	{
 		waitingList.add(waitingList.size(), flight);
 	}
-	
-	
-	
-	
 	
 	
 } // end of class

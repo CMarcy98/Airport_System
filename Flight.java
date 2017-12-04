@@ -1,14 +1,14 @@
 
 public class Flight
 {
-	private int flightNumber;
+	private String flightNumber;
 	private String flightDestination;
 	private String runway;
 	
 	/*
 	 * Creates attributes of a flight
 	 */
-	public Flight(int number, String destination, String runway)
+	public Flight(String number, String destination, String runway)
 	{
 		flightNumber = number;
 		flightDestination = destination;
@@ -20,7 +20,7 @@ public class Flight
 	/*
 	 * Returns the flight number
 	 */
-	public int getFlightNumber()
+	public String getFlightNumber()
 	{
 		return flightNumber;
 	}
@@ -28,7 +28,7 @@ public class Flight
 	/*
 	 * Sets the flight number
 	 */
-	public void setNumber(int number)
+	public void setNumber(String number)
 	{
 		flightNumber = number;
 	}

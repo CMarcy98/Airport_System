@@ -1,14 +1,14 @@
 
 public class Airport {
 
-	private Queue<Runway> runways;
+	private ListArrayBasedPlus<Runway> runways;
 	private int planeCount;
 	
 	/*
 	 * Creates attributes of an airport
 	 * @param runWayCount The number of run-ways for the airport
 	 */
-	public Airport(int runwayCount, Queue<Runway> runways) {
+	public Airport(int runwayCount, ListArrayBasedPlus<Runway> runways) {
 		this.runways = runways;
 		planeCount = 0;
 	}
@@ -19,7 +19,7 @@ public class Airport {
 	 * Returns all run-ways in the airport
 	 * @return The run-ways in the airport
 	 */
-	public Queue<Runway> getRunways()
+	public ListArrayBasedPlus<Runway> getRunways()
 	{
 		return runways;
 	}
@@ -36,19 +36,20 @@ public class Airport {
 //  <-------------------------------------------->  //
 
 	/*
-	 * 
+	 * Lets the next available plane from the 
 	 */
 	public void dispatchPlane()
 	{
-		//Gets information about the run-way 
-		Runway runway = runways.dequeue();
-		Flight plane = runway.getFlightQueue().dequeue();
+		//Gets information about the run-way and plane
+		Runway runway = runways.get(0);
+		runways.remove(0);
+		Flight plane = runway.getFromRunway();
 		
 		//Prints info about flight leaving
 		System.out.printf("Flight %s has now taken off from runway %s\n", plane.getFlightNumber(), plane.getRunway());
 		
 		//Moves run-way to back of queue
-		runways.enqueue(runway);
+		runways.add(runways.size(), runway);
 		
 		planeCount++;
 	}
@@ -60,16 +61,17 @@ public class Airport {
 	public void moveToWaiting()
 	{
 		//Gets information about the run-way 
-		Runway runway = runways.dequeue();
+		Runway runway = runways.get(0);
+		runways.remove(0);
 		Flight plane = runway.getFlightQueue().peek();
 		
 		//Prints information about where plane is going
 		System.out.println("Flight " + plane.getFlightNumber() + " is now waiting to be allowed to re-enter a runway.");
 		
 		//Moves plane to waiting list on the specific run-way
-		runway.getWaitingList().add(runway.getWaitingList().size(), plane);
+		runway.addToWaiting(plane);
 		
 		//Moves run-way to back of queue
-		runways.enqueue(runway);
+		runways.add(runways.size(), runway);
 	}	
 }
